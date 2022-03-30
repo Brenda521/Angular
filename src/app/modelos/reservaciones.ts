@@ -13,3 +13,13 @@ export interface ReservacionesEl {
 
 }
 
+
+export interface ReservacionesMongo {
+
+    _id: string;
+    num_mesa:number;
+    idMesa:number;
+    ocupado: boolean;
+    fecha:string;
+
+}

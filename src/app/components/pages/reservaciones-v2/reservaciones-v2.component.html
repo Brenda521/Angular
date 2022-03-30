@@ -29,6 +29,28 @@
     
     <br>
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" type="submit" (click)="cargarDisponibles()"> Crear </button>
+      <button class="btn btn-primary" type="submit" (click)="cargarDisponibles()" [disabled] = "!seleccionado || miFormulario.get('fecha')?.invalid"> Consultar fecha </button>
     </div>
   </form>   
+
+
+  <table  *ngIf="ListaModels.length != 0" class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Número mesa</th>
+        <th scope="col">Ocupado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of ListaModels" (click)="selectReservacion(model)">
+        <td>{{model.num_mesa}} </td>
+        <td>{{model.ocupado}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 
+  <p> {{ListaModels | json }}</p>
+  <h1>------</h1>
+  <p> {{mesasAuto | json }}</p>
+  -->

@@ -33,4 +33,19 @@ export class ReservacionesService {
     const url = `${this.apiURL}reservacion/actions/${id}`;
     return this.http.put(url,rm,{headers})
   }
+
+  indexMongo(data:any):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))
+    return this.http.post(`${this.apiURL}buscarMongo`,data,{headers})
+  }
+
+  storeMongo(data:any):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))
+    return this.http.post(`${this.apiURL}insMongo`,data,{headers})
+  }
+
+  updateMongo(data:any):Observable<any>{
+    let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))
+    return this.http.post(`${this.apiURL}ocupacionMongo`,data,{headers})
+  }
 }
