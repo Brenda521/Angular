@@ -88,7 +88,8 @@ export class ReservacionesV2Component implements OnInit {
         "num_mesa": mesas.num_mesa,
         "idMesa": mesas.id,
         "ocupado": false,
-        "fecha": this.f['fecha'].value
+        "fecha": this.f['fecha'].value,
+        "nombreCliente": 'No reservado'
       }
       this.mesasAuto.push(aux)
     });
@@ -132,15 +133,20 @@ export class ReservacionesV2Component implements OnInit {
 
   selectCliente(cliente: Clientesa){
     this.idCliente = cliente.id;
-    this.nombreCliente = cliente.nombre;
+    this.nombreCliente = cliente.nombre + ' ' + cliente.apellidos;
     this.seleccionado = true;
   }
 
   selectReservacion(reservacion: ReservacionesMongo){
     reservacion.ocupado = !reservacion.ocupado;
+    var nombre = "No reservado"
+    if (reservacion.ocupado){
+      var nombre = this.nombreCliente
+    }
     const miRequest = {
       'id': reservacion._id,
-      'estado': reservacion.ocupado
+      'estado': reservacion.ocupado,
+      'nombreCliente': nombre
     }
     this.miService.updateMongo(miRequest).subscribe({
       next: (r) => [

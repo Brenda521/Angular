@@ -21,5 +21,6 @@ export interface ReservacionesMongo {
     idMesa:number;
     ocupado: boolean;
     fecha:string;
+    nombreCliente: string;
 
 }

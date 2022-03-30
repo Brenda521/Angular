@@ -8,7 +8,7 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li *ngFor="let cliente of ListaClientes" (click)="selectCliente(cliente)">
-          <a class="dropdown-item">{{cliente.nombre}}</a>
+          <a class="dropdown-item">{{cliente.nombre}} {{cliente.apellidos}}</a>
         </li>
     </ul>
   </div>
@@ -39,12 +39,14 @@
       <tr>
         <th scope="col">Número mesa</th>
         <th scope="col">Ocupado</th>
+        <th scope="col">Cliente</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let model of ListaModels" (click)="selectReservacion(model)">
         <td>{{model.num_mesa}} </td>
         <td>{{model.ocupado}}</td>
+        <td>{{model.nombreCliente}}</td>
       </tr>
     </tbody>
   </table>
