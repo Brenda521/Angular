@@ -14,10 +14,10 @@ export class ReservacionesService {
 
   constructor(private http:HttpClient) { }
 
-  mostrarReservaciones():Observable<ReservacionesEl[]>{
+  mostrarReservaciones():Observable<any>{
     let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))
     const url = `${this.apiURL}reservacion/actions`;
-    return this.http.get<ReservacionesEl[]>(url,{headers});
+    return this.http.get<any>(url,{headers});
   }
   registrarRes(rm:Reservaciones):Observable<any>{
     let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))

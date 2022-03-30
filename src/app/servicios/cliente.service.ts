@@ -20,10 +20,10 @@ export class ClienteService {
     return this.http.post(`${this.apiURL}cliente/actions`,ca,{headers});
     
   }
-  mostrarClientes():Observable<Clientesa[]>{
+  mostrarClientes():Observable<any>{
     let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))
     const url = `${this.apiURL}cliente/actions`;
-    return this.http.get<Clientesa[]>(url,{headers});
+    return this.http.get<any>(url,{headers});
 } 
   deleteCliente(id:number):Observable<Clientesa>{
     let headers = new HttpHeaders().set('Authorization','bearer ' + localStorage.getItem('token'))   

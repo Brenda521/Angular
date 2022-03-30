@@ -1,0 +1,34 @@
+<h2> RESERVACIONES </h2>  
+
+  <!-- CLIENTE -->
+  Cliente: 
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Seleccionar cliente
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let cliente of ListaClientes" (click)="selectCliente(cliente)">
+          <a class="dropdown-item">{{cliente.nombre}}</a>
+        </li>
+    </ul>
+  </div>
+
+  <h4> {{nombreCliente}}</h4>
+
+  <form [formGroup]="miFormulario">
+    <!-- FECHA -->
+    Fecha: 
+    <input 
+    [class.is-invalid]="miFormulario.get('fecha')?.touched 
+    && miFormulario.get('fecha')?.invalid" 
+    type="date" class="form-control" 
+    formControlName="fecha"
+    >
+
+    <!-- BOTÓN -->
+    
+    <br>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="submit" (click)="cargarDisponibles()"> Crear </button>
+    </div>
+  </form>   

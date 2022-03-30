@@ -5,6 +5,7 @@ import { ActualizarplatillosComponent } from './actualizar/actualizarplatillos/a
 import { ActualizarreservacionesComponent } from './actualizar/actualizarreservaciones/actualizarreservaciones.component';
 import { BebidasComponent } from './bebidas/bebidas.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { ReservacionesV2Component } from './components/pages/reservaciones-v2/reservaciones-v2.component';
 import { EntradasComponent } from './entradas/entradas.component';
 import { GuardunoGuard } from './guards/guarduno.guard';
 import { HomeComponent } from './home/home.component';
@@ -39,11 +40,14 @@ const routes: Routes = [
   {path : 'tipo-platillos', component:TipoPlatillosComponent,canActivate:[GuardunoGuard]},
   {path : 'mesas',component:MesasComponent,canActivate:[GuardunoGuard]},
   {path : 'platillos',component:PlatillosgComponent,canActivate:[GuardunoGuard]},
-  {path : 'reservaciones',component:ReservacionesComponent},
+  {path : 'reservaciones',component:ReservacionesV2Component},
   {path : 'miscategorias/:id', component:MiscategoriasComponent},
   {path : 'actualizarcliente/:id',component:ActualizarclienteComponent,canActivate:[GuardunoGuard]},
   {path : 'actualizarplatillos/:id', component:ActualizarplatillosComponent,canActivate:[GuardunoGuard]},
-  {path : 'actualizarreservaciones/:id',component:ActualizarreservacionesComponent,canActivate:[GuardunoGuard]}
+  {path : 'actualizarreservaciones/:id',component:ActualizarreservacionesComponent,canActivate:[GuardunoGuard]},
+
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  
 ];
 
 @NgModule({

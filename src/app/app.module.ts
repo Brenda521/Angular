@@ -31,6 +31,7 @@ import { MiscategoriasComponent } from './miscategorias/miscategorias.component'
 import { ActualizarclienteComponent } from './actualizar/actualizarcliente/actualizarcliente.component';
 import { ActualizarplatillosComponent } from './actualizar/actualizarplatillos/actualizarplatillos.component';
 import { ActualizarreservacionesComponent } from './actualizar/actualizarreservaciones/actualizarreservaciones.component';
+import { ReservacionesV2Component } from './components/pages/reservaciones-v2/reservaciones-v2.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ActualizarreservacionesComponent } from './actualizar/actualizarreserva
     MiscategoriasComponent,
     ActualizarclienteComponent,
     ActualizarplatillosComponent,
-    ActualizarreservacionesComponent
+    ActualizarreservacionesComponent,
+    ReservacionesV2Component
   ],
   imports: [
     BrowserModule,
