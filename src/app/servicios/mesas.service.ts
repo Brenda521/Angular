@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Mesas, MesasEl } from '../modelos/mesas';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MesasService {
 
-  apiURL = 'http://127.0.0.1:3333/'
+  apiURL = environment.urlGlobal;
 
 
   constructor(private http:HttpClient) { }

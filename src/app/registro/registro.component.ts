@@ -3,95 +3,69 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuarios } from '../modelos/usuarios';
 import { UsuaService } from '../servicios/usua.service';
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
+import { CargosService } from '../services/cargos.service';
+import { Cargo } from '../models/cargo';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
+
 export class RegistroComponent implements OnInit {
 
-  title = 'Registrar';
+  ListaCargos: Cargo[] = [];
+  idCargo: number = 0;
 
-  registerForm!: FormGroup;
-  user!: Usuarios;
-
-  // para las validaciones
-  constructor(private vd:FormBuilder,private servi: UsuaService) {
-
-   }
+  constructor(private miService:UsuaService, 
+    private router: Router, 
+    private cargosService: CargosService) { }
 
   ngOnInit(): void {
-  
-    this.registerForm = this.vd.group({
-/*    nombre:["",[Validators.required,Validators.minLength(3)]],
-      apellido:["",[Validators.required,Validators.minLength(3)]],
-      telefono:["",[Validators.required,Validators.maxLength(10),Validators.minLength(10)]], */
-      correo:["",[Validators.required]],
-      password:["",[Validators.required,Validators.minLength(8)]],
-      //pass_conf:["",[Validators.required,Validators.minLength(8)]]
-      cargo:["",[Validators.required]]
-    })
-  
+    this.cargarCargo()
   }
 
-  register(): void{
+  miFormulario = new FormGroup({
+    email : new FormControl('', [Validators.required, Validators.email]),
+    password : new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
 
-    this.setUsuario();
-    console.log(this.registerForm.value);
-    this.servi.register(this.user).subscribe((data: any)=>{
-      console.log("ya jala");
-    },
-    error =>{
-      console.log(error);
-    })
-  }
-
-  get ConfirmarPassword(){
-
-    const contra = this.registerForm.get('password')?.value;
-    const contra_conf = this.registerForm.get('pass_conf')?.value;
-    return contra == contra_conf ? false : true;
-  }
-
-  setUsuario(): void{
-
-    this.user = {
-      /* nombre:this.registerForm.get('nombre')?.value,
-      apellidos:this.registerForm.get('apellido')?.value,
-      telefono:this.registerForm.get('telefono')?.value, */
-      email:this.registerForm.get('correo')?.value,
-      password:this.registerForm.get('password')?.value,
-      //password_confirmation:this.registerForm.get('pass_conf')?.value
-      cargo:this.registerForm.get('cargo')?.value
-    }
-    
-  }
-  registrar():void{
-
-    this.setUsuario();
-    console.log(this.registerForm.value);
-
-    this.servi.register(this.user).subscribe((data: any)=>{
-      console.log(data);
-      //setItem, es para darle el valor a la variable que esta entre comillas
-      //localStorage.setItem("token",data.token);
-      Swal.fire({
-        position: 'center',
-        icon: 'success', 
-        title: 'Se registro correctamente',
-        showConfirmButton: false,
-        timer: 1500
-      });
-    },error =>{
-      console.log(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'No se puede registrar',
+  get f(): { [key: string]: AbstractControl} {return this.miFormulario.controls; }
+  store(){
+    if (this.miFormulario.valid){
+      const miRequest = {
+        'email':this.f['email'].value, 
+        'password':this.f['password'].value,
+        'cargo':this.idCargo
+      }
+      console.log(miRequest);
+      this.miService.register(miRequest).subscribe({
+          next: () => [console.log("Usuario creado"), alert("Usuario creado correctamente") ,this.router.navigate(['/login'])],
+          error: (e) => [console.error(e)],
+          complete: () => console.info('complete') 
       })
-    })
-
-
+    }else {
+      console.log("Formulario inválido");
+    }
   }
+
+  cargarCargo(){
+    this.cargosService.index().subscribe({
+      next: (r) => [
+      console.log(r),
+      this.ListaCargos = r
+    ],
+      error: (e) => [console.error(e)],
+      complete: () => console.info('complete') 
+    })
+  }
+
+  selectCargo(cargo: Cargo){
+    this.idCargo = cargo.id
+  }
+
 
 }

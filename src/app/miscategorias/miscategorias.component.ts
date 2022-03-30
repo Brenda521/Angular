@@ -16,11 +16,19 @@ export class MiscategoriasComponent implements OnInit {
   titulo!: string;
   constructor(private servi:TipoPlatillosService, private rut:ActivatedRoute) { }
 
+  miInterval: any;
+
   ngOnInit(): void {
-    const contador = interval(1000)
-    contador.subscribe(() =>{
+    this.miInterval = setInterval(() => {
+      console.log("ola")
+    }, 500);
     this.mostraCate();
-    })
+  }
+
+  ngOnDestroy() {
+    if (this.miInterval) {
+      clearInterval(this.miInterval);
+    }
   }
 
   mostraCate():void{ 

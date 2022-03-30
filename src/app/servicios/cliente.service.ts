@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Clientesa } from '../modelos/clientesa';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClienteService {
 
-  apiURL = 'http://127.0.0.1:3333/'
+  apiURL = environment.urlGlobal;
 
   //cliente es el servicio de angular para consumir apis
   constructor(private http:HttpClient) { }

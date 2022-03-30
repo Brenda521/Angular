@@ -15,3 +15,10 @@ h1
   .form {
     width: 450px;
   }
+
+  .ocultar{
+    display: none;
+}
+.msgError{
+    color: red;
+}

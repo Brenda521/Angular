@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlGlobal: "http://192.168.1.66:3333/"
 };

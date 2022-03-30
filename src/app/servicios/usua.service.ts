@@ -12,15 +12,16 @@ import { Usuarios } from '../modelos/usuarios';
 export class UsuaService {
 
   //apiURL = 'http://192.168.43.15:3333/'
-  apiURL = 'http://127.0.0.1:3333/'
+  apiURL = environment.urlGlobal;
 
   //cliente es el servicio de angular para consumir apis
   constructor(private http:HttpClient) { }
 
   //el us es como el multiplatfor de insomnia
 
-  register(us:Usuarios):Observable<any>{
-    return this.http.post(`${this.apiURL}users`,us);
+  register(data:any):Observable<any>{
+    const url = this.apiURL + 'users';
+    return this.http.post(url,data);
   }
 
   logueo(lo:Logeo):Observable<any>{

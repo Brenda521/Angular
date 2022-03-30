@@ -12,7 +12,7 @@ import { HomechefComponent } from './homechef/homechef.component';
 import { HomecajeroComponent } from './homecajero/homecajero.component';
 import { HomerecepcionistaComponent } from './homerecepcionista/homerecepcionista.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CookieService } from 'ngx-cookie-service';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -63,7 +63,8 @@ import { ActualizarreservacionesComponent } from './actualizar/actualizarreserva
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@
         <label for="email">Correo</label>
         <input [class.is-invalid]="loginForm.get('correo')?.touched 
         && loginForm.get('correo')?.invalid" 
-        type="text" class="form-control"  placeholder="ana123@gmail.com"
+        type="text" class="form-control"  placeholder="Escribe tu correo"
         formControlName="correo">
         <div *ngIf="loginForm.get('correo')?.touched && loginForm.get('correo')?.invalid">
         <div class="msgError"> Por favor inserte un correo válido </div>

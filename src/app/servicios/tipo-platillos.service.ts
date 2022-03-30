@@ -9,7 +9,7 @@ import { catchError, Observable, of } from 'rxjs';
 })
 export class TipoPlatillosService {
 
-  apiURL ='http://127.0.0.1:3333/'
+  apiURL = environment.urlGlobal;
 
 
   constructor(private http:HttpClient) { }
