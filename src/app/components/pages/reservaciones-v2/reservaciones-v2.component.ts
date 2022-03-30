@@ -41,6 +41,7 @@ export class ReservacionesV2Component implements OnInit {
     this.cargarMesas();
     this.miInterval = setInterval(() => {
       if (this.seleccionado){
+        console.log("Actualizando")
         this.cargarDisponibles()
       }
     }, 5000);
