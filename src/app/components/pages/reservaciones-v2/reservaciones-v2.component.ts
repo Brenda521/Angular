@@ -27,6 +27,7 @@ export class ReservacionesV2Component implements OnInit {
   idCliente: number = 0;
   nombreCliente: string = "";
   seleccionado: boolean = false;
+  miInterval: any;
 
   constructor(
     private miService:ReservacionesService,
@@ -38,8 +39,18 @@ export class ReservacionesV2Component implements OnInit {
     this.cargarInfo();
     this.cargarCliente();
     this.cargarMesas();
+    this.miInterval = setInterval(() => {
+      if (this.seleccionado){
+        this.cargarDisponibles()
+      }
+    }, 5000);
   }
 
+  ngOnDestroy() {
+    if (this.miInterval) {
+      clearInterval(this.miInterval);
+    }
+  }
 
   miFormulario = new FormGroup({
     fecha : new FormControl('', [Validators.required])
