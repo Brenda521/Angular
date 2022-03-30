@@ -1,0 +1,46 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<app-navbar></app-navbar>
+<h1>AGREGAR CLIENTES</h1>
+<br>
+<div class="container">
+    <div class="abs-center">
+        <form class="border p-3 form" autocomplete="off"[formGroup]="clieactForm"(ngSubmit)="actualizar()">
+            <div class="form-group">
+                <label for="text">Nombre</label>
+                <input type="text" name="text"class="form-control"formControlName="nombre"
+                [class.is-invalid]="clieactForm.get('nombre')?.touched 
+                && clieactForm.get('nombre')?.invalid" 
+                type="text" class="form-control">
+                <div *ngIf="clieactForm.get('nombre')?.touched && clieactForm.get('nombre')?.invalid">
+                <div class="msgError"> Nombre minimo de 2 caracteres</div>
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="password">Apellidos</label>
+                <input type="text" name="text"class="form-control"formControlName="apellidos"
+                [class.is-invalid]="clieactForm.get('apellidos')?.touched 
+                && clieactForm.get('apellidos')?.invalid" 
+                type="text" class="form-control">
+                <div *ngIf="clieactForm.get('apellidos')?.touched && clieactForm.get('apellidos')?.invalid">
+                <div class="msgError">Apellidos minimo de 2 caracteres </div>
+                </div>
+            </div> 
+            <div class="form-group">
+                <label for="text">Telefono</label>
+                <input type="text" name="text"class="form-control"formControlName="telefono"
+                [class.is-invalid]="clieactForm.get('telefono')?.touched 
+                && clieactForm.get('telefono')?.invalid" 
+                type="text" class="form-control">
+                <div *ngIf="clieactForm.get('telefono')?.touched && clieactForm.get('telefono')?.invalid">
+                <div class="msgError"> El número debe contener 10 digitos</div>
+                </div>
+            </div>
+            <br>   
+            <button type="submit" [disabled] ="clieactForm.invalid" class="btn btn-outline-dark">Confirmar</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-primary" (click)="regresar()">Regresar</button>
+
+            <br>
+            <br>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<app-navbar></app-navbar>
+<h1>AGREGAR RESERVACION</h1>
+<br>
+<div class="container">
+    <div class="abs-center">
+        <form class="border p-3 form" autocomplete="off"[formGroup]="resForm"(ngSubmit)="registrarRes()">
+            <div class="form-group">
+                <label for="date">Fecha</label>
+                <input type="date" name="date"class="form-control"formControlName="fecha"
+                [class.is-invalid]="resForm.get('fecha')?.touched 
+                && resForm.get('fecha')?.invalid" 
+                type="date" class="form-control">
+                <div *ngIf="resForm.get('fecha')?.touched && resForm.get('fecha')?.invalid">
+                <div class="msgError"> Nombre minimo de 2 caracteres</div>
+                </div>
+              </div>
+            <div class="form-group">
+                <label>Seleccione Al Cliente</label>
+            <select class="form-select" aria-label="Default select example"[class.is-invalid]="resForm.get('id_cliente')?.touched 
+            && resForm.get('id_cliente')?.invalid" formControlName="id_cliente">
+                <option *ngFor="let sAC of selArrClie" [value]="sAC.id">{{sAC.nombre}}</option>
+            </select>
+            <br>  
+            </div>
+            <div class="form-group">
+                <label>Seleccione La Mesa</label>
+            <select class="form-select" aria-label="Default select example"[class.is-invalid]="resForm.get('id_mesa')?.touched 
+            && resForm.get('id_mesa')?.invalid" formControlName="id_mesa">
+                <option *ngFor="let sAM of selArrMes" [value]="sAM.id">{{sAM.num_mesa}}</option>
+            </select>
+            <br>  
+            </div>
+            <br>   
+            <button type="submit" [disabled] ="resForm.invalid" class="btn btn-outline-dark">Agregar</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-primary" (click)="regresar()">Regresar</button>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="abs-center">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Mesa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rar of resarr">
+                <td>{{rar.fecha}}</td>
+                <td>{{rar.nombre}} {{rar.apellidos}}</td>
+                <td>{{rar.num_mesa}}</td>
+                <td><button type="button" class="btn btn-warning"><a routerLink="/actualizarreservaciones/{{rar.NoReservacion}}">Actualizar</a></button></td>
+                <td><button type="button" class="btn btn-danger" (click)="eliminarRes(rar.NoReservacion)">Eliminar</button>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+        
+    </div>
+</div>
